@@ -1,0 +1,36 @@
+stages:
+  topic_model:
+    cmd: python topic_model.py
+    deps:
+      - topic_model.py
+      - tweets.csv
+    outs:
+      - project_BERTopic
+  multiclass_state:
+    cmd: python multiclass_state.py 
+    deps:
+      - multiclass_state.py
+      - tweets.csv
+      - elected_officials.csv
+    outs:
+      - mc_state_pipe.pkl
+    params:
+      - preprocessing.max_min_docs
+      - preprocessing.n_grams
+    metrics:
+      - metrics.json:
+          cache: false
+  #stage_2b:
+  #  cmd: python multilabel.py
+  #  deps:
+  #    - multilabel.py
+  #    - ../../../data/mtg.feather
+  #  outs:
+  #    - multilabel_pipe.pkl
+  #stage_3:
+  #  cmd: python rank_regression.py
+  #  deps:
+  #    - rank_regression.py
+  #    - ../../../data/mtg.feather
+  #  outs:
+  #    - regression_GridSearch.pkl

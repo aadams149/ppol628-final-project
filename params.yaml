@@ -1,0 +1,8 @@
+preprocessing:
+    #Number of documents for TFIDF
+  max_min_docs:
+    smallest: 5
+    largest: 0.8
+  n_grams:
+    min: 1
+    max: 2
