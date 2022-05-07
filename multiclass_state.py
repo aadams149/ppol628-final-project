@@ -6,6 +6,7 @@
 import joblib
 import numpy as np
 import pandas as pd
+import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
@@ -19,9 +20,13 @@ with open("params.yaml", "r") as fd:
 docs = params["preprocessing"]["max_min_docs"]
 ngrams = params['preprocessing']['n_grams']
     
-#Read in data
+#Load in data
 tweets = pd.read_csv('data/tweets.csv')
+#Drop tweets not in english
 tweets = tweets.loc[tweets['language'] == 'en']
+tweets['tweet'] = tweets['tweet'].str.replace(r'http\S+', '')
+tweets = tweets.loc[tweets['tweet'] != '']
+tweets = tweets.reset_index(drop=True)
 
 states = pd.read_csv('data/elected_officials.csv')
 

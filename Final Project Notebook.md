@@ -106,7 +106,7 @@ topic_model.visualize_topics_over_time(dynamic_topics,
                                        width = 950)
 ```
 
-I expected some of the topics to be cyclical or intermittent, but I am surprised at how clear the spikes are. Topic 8, with the top words "your vote ballot", spikes almost every november and is nonexistent the rest of the year. Topic 4, which is about Ukraine, only appears starting in February 2022, and topic 2, which is about COVID-19, sees its biggest spikes during the winter of 2020-21 and the Omicron wave beginning in late 2021. In general, all of these topics spike in the winter, and occur barely if at all during the rest of the year.
+I expected some of the topics to be cyclical or intermittent, but I am surprised at how clear the spikes are. Topic 0, with the top words "your vote ballot", spikes almost every november and is nonexistent the rest of the year. Topic 2, which is about veterans, exhibits similar patterns. Topic 7, which is about Ukraine, only appears starting in February 2022, and topic 1, which is about COVID-19, sees its biggest spikes during the winter of 2020-21 and the Omicron wave beginning in late 2021. In general, all of these topics spike in the winter, and occur barely if at all during the rest of the year.
 
 
 ___________
@@ -314,14 +314,15 @@ labels = pd.DataFrame(tweets['Party'].unique()).reset_index()
 labels['index'] = labels['index']+1
 labels.columns = ['party_label', 'Party']
 tweets = tweets.merge(labels, on = 'Party')
+partyclass = tweets.loc[tweets['Party'] != 'Independent']
 ```
 
 ```python
 #Select labels as targets
-y = tweets['party_label']
+y = partyclass['party_label']
 
 #Select text columns as features
-X = tweets["tweet"]
+X = partyclass["tweet"]
 ```
 
 ```python
@@ -333,12 +334,8 @@ y_pred = pipe.predict(X)
 ```
 
 ```python
-pd.unique(tweets['Party'])
-```
-
-```python
 cm = pd.DataFrame(confusion_matrix(y,y_pred))
-cm.columns = pd.unique(tweets['Party'])
-cm.index = pd.unique(tweets['Party'])
+cm.columns = pd.unique(partyclass['Party'])
+cm.index = pd.unique(partyclass['Party'])
 cm
 ```
