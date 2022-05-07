@@ -3,13 +3,13 @@ stages:
   multiclass_state:
     cmd: python multiclass_state.py
     deps:
-    - path: elected_officials.csv
+    - path: data/elected_officials.csv
       md5: 5d8880c7cfe7123fd6e74e5f94bf12e3
       size: 23308
     - path: multiclass_state.py
       md5: 4899421c2618694c311963503e78497a
       size: 2485
-    - path: tweets.csv
+    - path: data/tweets.csv
       md5: aaac6aa05b6bc64c6cff12ee4a2c3240
       size: 29380229
     params:
@@ -21,7 +21,7 @@ stages:
           min: 1
           max: 2
     outs:
-    - path: mc_state_pipe.pkl
+    - path: outputs/mc_state_pipe.pkl
       md5: c01d38f153ca3d562da264887cf302f6
       size: 15659816
     - path: metrics/mc_state_metrics.json
