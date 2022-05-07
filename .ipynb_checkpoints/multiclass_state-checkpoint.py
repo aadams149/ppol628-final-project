@@ -20,10 +20,10 @@ docs = params["preprocessing"]["max_min_docs"]
 ngrams = params['preprocessing']['n_grams']
     
 #Read in data
-tweets = pd.read_csv('tweets.csv')
+tweets = pd.read_csv('data/tweets.csv')
 tweets = tweets.loc[tweets['language'] == 'en']
 
-states = pd.read_csv('elected_officials.csv')
+states = pd.read_csv('data/elected_officials.csv')
 
 states = states.melt(id_vars = ['State',
                                 'StateAbbr',
@@ -58,7 +58,7 @@ y = tweets['label']
 X = tweets["tweet"]
 
 #Training test split 70/30
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.5)
 
 #Preprocess text 
 vectorizer = TfidfVectorizer(
@@ -78,12 +78,12 @@ pipe = Pipeline([
 fitted_pipe = pipe.fit(X_train, y_train)
 
 #Export pickeled pipe
-joblib.dump(fitted_pipe, 'mc_state_pipe.pkl')
+joblib.dump(fitted_pipe, 'outputs/mc_state_pipe.pkl')
 
 #Generate predictions
 y_pred = pipe.predict(X_test)
 
 #Output metrics to JSON
 metrics = pd.DataFrame(classification_report(y_test, y_pred, output_dict=True))
-metrics["weighted avg"].to_json("metrics.json")
+metrics["weighted avg"].to_json("metrics/mc_state_metrics.json")
 

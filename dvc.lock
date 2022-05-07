@@ -6,12 +6,12 @@ stages:
     - path: data/elected_officials.csv
       md5: 5d8880c7cfe7123fd6e74e5f94bf12e3
       size: 23308
-    - path: multiclass_state.py
-      md5: 4899421c2618694c311963503e78497a
-      size: 2485
     - path: data/tweets.csv
       md5: aaac6aa05b6bc64c6cff12ee4a2c3240
       size: 29380229
+    - path: multiclass_state.py
+      md5: c897e18e020b9968af1ad8015fd1c2a5
+      size: 2609
     params:
       params.yaml:
         preprocessing.max_min_docs:
@@ -21,12 +21,12 @@ stages:
           min: 1
           max: 2
     outs:
-    - path: outputs/mc_state_pipe.pkl
-      md5: c01d38f153ca3d562da264887cf302f6
-      size: 15659816
     - path: metrics/mc_state_metrics.json
-      md5: 26ffd936e50fc22232a252fa11f50c48
-      size: 90
+      md5: f608dc2a9da91727014164b92c1c0075
+      size: 89
+    - path: outputs/mc_state_pipe.pkl
+      md5: bc59474da32683daeff85936cdd2849b
+      size: 11673057
   multiclass_office:
     cmd: python multiclass_office.py
     deps:
@@ -37,8 +37,8 @@ stages:
       md5: aaac6aa05b6bc64c6cff12ee4a2c3240
       size: 29380229
     - path: multiclass_office.py
-      md5: 9fadb3e6954e28bb48cb67ee12fcceb7
-      size: 2530
+      md5: e84b450275bf0a94a1ea46629af16fe5
+      size: 2531
     params:
       params.yaml:
         preprocessing.max_min_docs:
@@ -49,8 +49,8 @@ stages:
           max: 2
     outs:
     - path: metrics/mc_office_metrics.json
-      md5: 63abe02cd92967e3dfdf3f6b5c1230f7
-      size: 90
+      md5: 0ab35738bc6331243390ca93257aa1c0
+      size: 89
     - path: outputs/mc_office_pipe.pkl
-      md5: 9e5039f450125c8d40c88f1aed472c6a
-      size: 6243730
+      md5: 833414f93e614a0e771ccebefd89a575
+      size: 6261418
