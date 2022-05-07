@@ -2,6 +2,8 @@
 # coding: utf-8
 # %%
 
+# %%
+
 
 import joblib
 import numpy as np
@@ -45,11 +47,11 @@ tweets = tweets.merge(states, left_on = 'username', right_on = 'twitter')
 #Create numeric labels based on state names
 
 #Merge labels into MTG data frame
-labels = pd.DataFrame(tweets['State'].unique()).reset_index()
+labels = pd.DataFrame(tweets['office'].unique()).reset_index()
 #Add one because zero indexed
 labels['index'] = labels['index']+1
-labels.columns = ['label', 'State']
-tweets = tweets.merge(labels, on = 'State')
+labels.columns = ['label', 'office']
+tweets = tweets.merge(labels, on = 'office')
 
 #Select labels as targets
 y = tweets['label']
@@ -78,12 +80,12 @@ pipe = Pipeline([
 fitted_pipe = pipe.fit(X_train, y_train)
 
 #Export pickeled pipe
-joblib.dump(fitted_pipe, 'outputs/mc_state_pipe.pkl')
+joblib.dump(fitted_pipe, 'outputs/mc_office_pipe.pkl')
 
 #Generate predictions
 y_pred = pipe.predict(X_test)
 
 #Output metrics to JSON
 metrics = pd.DataFrame(classification_report(y_test, y_pred, output_dict=True))
-metrics["weighted avg"].to_json("metrics/mc_state_metrics.json")
+metrics["weighted avg"].to_json("metrics/mc_office_metrics.json")
 
