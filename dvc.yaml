@@ -3,30 +3,37 @@ stages:
     cmd: python topic_model.py
     deps:
       - topic_model.py
-      - tweets.csv
+      - data/tweets.csv
     outs:
-      - project_BERTopic
+      - outputs/project_BERTopic
   multiclass_state:
     cmd: python multiclass_state.py 
     deps:
       - multiclass_state.py
-      - tweets.csv
-      - elected_officials.csv
+      - data/tweets.csv
+      - data/elected_officials.csv
     outs:
-      - mc_state_pipe.pkl
+      - outputs/mc_state_pipe.pkl
     params:
       - preprocessing.max_min_docs
       - preprocessing.n_grams
     metrics:
-      - metrics.json:
+      - metrics/mc_state_metrics.json:
           cache: false
-  #stage_2b:
-  #  cmd: python multilabel.py
-  #  deps:
-  #    - multilabel.py
-  #    - ../../../data/mtg.feather
-  #  outs:
-  #    - multilabel_pipe.pkl
+  multiclass_office:
+    cmd: python multiclass_office.py
+    deps:
+      - multiclass_office.py
+      - data/tweets.csv
+      - data/elected_officials.csv
+    outs:
+      - outputs/mc_office_pipe.pkl
+    params:
+      - preprocessing.max_min_docs
+      - preprocessing.n_grams
+    metrics:
+      - metrics/mc_office_metrics.json:
+         cache: false
   #stage_3:
   #  cmd: python rank_regression.py
   #  deps:
