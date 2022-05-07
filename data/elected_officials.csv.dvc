@@ -1,0 +1,4 @@
+outs:
+- md5: 5d8880c7cfe7123fd6e74e5f94bf12e3
+  size: 23308
+  path: elected_officials.csv
