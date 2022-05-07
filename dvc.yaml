@@ -34,10 +34,17 @@ stages:
     metrics:
       - metrics/mc_office_metrics.json:
          cache: false
-  #stage_3:
-  #  cmd: python rank_regression.py
-  #  deps:
-  #    - rank_regression.py
-  #    - ../../../data/mtg.feather
-  #  outs:
-  #    - regression_GridSearch.pkl
+  twoclass_party:
+    cmd: python twoclass_party.py
+    deps:
+      - twoclass_party.py
+      - data/tweets.csv
+      - data/elected_officials.csv
+    outs:
+      - outputs/bc_party_pipe.pkl
+    params:
+      - preprocessing.max_min_docs
+      - preprocessing.n_grams
+    metrics:
+      - metrics/bc_party_metrics.json:
+         cache: false

@@ -54,3 +54,30 @@ stages:
     - path: outputs/mc_office_pipe.pkl
       md5: 833414f93e614a0e771ccebefd89a575
       size: 6261418
+  twoclass_party:
+    cmd: python twoclass_party.py
+    deps:
+    - path: data/elected_officials.csv
+      md5: 1ab400296f4c902de6e26dd4009f9464
+      size: 22934
+    - path: data/tweets.csv
+      md5: aaac6aa05b6bc64c6cff12ee4a2c3240
+      size: 29380229
+    - path: twoclass_party.py
+      md5: f857a7b616dae2d6759f8686b5f930d9
+      size: 2570
+    params:
+      params.yaml:
+        preprocessing.max_min_docs:
+          smallest: 5
+          largest: 0.8
+        preprocessing.n_grams:
+          min: 1
+          max: 2
+    outs:
+    - path: metrics/bc_party_metrics.json
+      md5: 3e570f33f79b6b60fbd401a0c13627a8
+      size: 89
+    - path: outputs/bc_party_pipe.pkl
+      md5: 594521a5293c2aa9eac146c1f98d4d52
+      size: 5797308
