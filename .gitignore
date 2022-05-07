@@ -1,4 +1,6 @@
 /data-file.bin
 /scraped_tweets
-/tweets.csv
-/mc_state_pipe.pkl
+/data/tweets.csv
+/data/elected_officials.csv
+/outputs/mc_state_pipe.pkl
+/outputs/mc_office_pipe.pkl
