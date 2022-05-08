@@ -61,12 +61,15 @@ jupyter:
 
 ```python slideshow={"slide_type": "skip"}
 from bertopic import BERTopic
+import matplotlib.pyplot as plt
+%matplotlib inline 
 import numpy as np
 import pandas as pd
 import re
+import seaborn as sn
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
@@ -351,18 +354,9 @@ pipe.fit(X,y)
 y_pred = pipe.predict(X)
 ```
 
-```python slideshow={"slide_type": "skip"}
-def highlight_diag(df):
-    a = np.full(df.shape, '', dtype='<U24')
-    np.fill_diagonal(a, 'background-color: yellow')
-    return pd.DataFrame(a, index=df.index, columns=df.columns)
-```
-
-```python slideshow={"slide_type": "slide"} hidePrompt=true hideCode=true
-cm = pd.DataFrame(confusion_matrix(y,y_pred))
-cm.columns = pd.unique(tweets['office'])
-cm.index = pd.unique(tweets['office'])
-cm.style.apply(highlight_diag, axis=None)
+```python
+ConfusionMatrixDisplay.from_predictions(y, y_pred, display_labels = pd.unique(tweets['office']))
+#plt.savefig('plots/office_cm.png')
 ```
 
 ```python slideshow={"slide_type": "slide"}
@@ -441,6 +435,11 @@ cm = pd.DataFrame(confusion_matrix(y,y_pred))
 cm.columns = pd.unique(partyclass['Party'])
 cm.index = pd.unique(partyclass['Party'])
 cm
+```
+
+```python
+ConfusionMatrixDisplay.from_predictions(y, y_pred, display_labels = pd.unique(partyclass['Party']))
+plt.savefig('plots/party_cm.png')
 ```
 
 ```python slideshow={"slide_type": "slide"} hidePrompt=true
