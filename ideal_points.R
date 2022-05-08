@@ -64,6 +64,23 @@ dfmat_tweets <- dfm(tokens_tweets,
 tmod_wf <- textmodel_wordfish(dfmat_tweets, 
                               dir = c(37, 1),
                               sparse = TRUE)
+
+#Create a column of labels
+governors$label <-
+  paste0(
+    governors$Name,
+    ' (',
+    substr(governors$Party,1,1),
+    '-',
+    governors$StateAbbr,
+    ')',
+    sep = ''
+  )
+
+#Set labels
+tmod_wf$docs <-
+  governors$label
+
 #View summary of ideal points
 summary(tmod_wf)
 
@@ -80,6 +97,8 @@ governors <-
 #write_csv(governors, 'data/govs_ideal.csv')
 
 #Same procedure in other sections
+
+textplot_scale1d(tmod_wf)
 
 # Lt. Governor --------------------------------------------------------
 
@@ -183,7 +202,24 @@ treasurer <-
   treasurer %>%
   select(!c(language, tweets))
 
+treasurer$label <-
+  paste0(
+    treasurer$Name,
+    ' (',
+    substr(treasurer$Party,1,1),
+    '-',
+    treasurer$StateAbbr,
+    ')',
+    sep = ''
+  )
+
 treasurer$ideal_point <-
   tmod_wf$theta
+
+tmod_wf$docs <-
+  treasurer$label
+
+textplot_scale1d(tmod_wf)
+
 
 write_csv(treasurer, 'data/treasurer_ideal.csv')
