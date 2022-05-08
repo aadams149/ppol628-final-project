@@ -30,6 +30,7 @@ I scraped tweets from several accounts and concatenated them all into a single .
 from bertopic import BERTopic
 import numpy as np
 import pandas as pd
+import re
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import classification_report
@@ -47,7 +48,11 @@ tweets = pd.read_csv('data/tweets.csv')
 ```
 
 ```python
+#Drop tweets not in english
 tweets = tweets.loc[tweets['language'] == 'en']
+tweets['tweet'] = tweets['tweet'].str.replace(r'http\S+', '')
+tweets = tweets.loc[tweets['tweet'] != '']
+tweets = tweets.reset_index(drop=True)
 ```
 
 ```python

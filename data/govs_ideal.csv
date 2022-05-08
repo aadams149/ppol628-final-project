@@ -1,0 +1,51 @@
+State,StateAbbr,Name,Party,Inauguration,Title,office,ideal_point
+Alaska,AK,Mike Dunleavy,Republican,12/3/2018,Governor,Governor,1.5637211200215004
+Alabama,AL,Kay Ivey,Republican,4/10/2017,Governor,Governor,0.8285835063844791
+Arkansas,AR,Asa Hutchinson,Republican,1/13/2015,Governor,Governor,0.6753015712327723
+Arizona,AZ,Doug Ducey,Republican,1/5/2015,Governor,Governor,0.8540470312604678
+California,CA,Gavin Newsom,Democratic,1/7/2019,Governor,Governor,0.16708494153036388
+Colorado,CO,Jared Polis,Democratic,1/8/2019,Governor,Governor,-1.189049854739385
+Connecticut,CT,Ned Lamont,Democratic,1/9/2019,Governor,Governor,-0.997028149631889
+Delaware,DE,John Carney,Democratic,1/17/2017,Governor,Governor,-1.2474333223899854
+Florida,FL,Ron DeSantis,Republican,1/8/2019,Governor,Governor,1.970664972906707
+Georgia,GA,Brian Kemp,Republican,1/14/2019,Governor,Governor,1.3822540034876605
+Hawaii,HI,David Ige,Democratic,12/1/2014,Governor,Governor,-0.8520009816603802
+Iowa,IA,Kim Reynolds,Republican,5/24/2017,Governor,Governor,0.7928745477404432
+Idaho,ID,Brad Little,Republican,1/7/2019,Governor,Governor,0.9170806935974654
+Illinois,IL,J. B. Pritzker,Democratic,1/14/2019,Governor,Governor,-0.5885154286491886
+Indiana,IN,Eric Holcomb,Republican,1/9/2017,Governor,Governor,-0.022242887831158874
+Kansas,KS,Laura Kelly,Democratic,1/14/2019,Governor,Governor,-0.44682227439924754
+Kentucky,KY,Andy Beshear,Democratic,12/10/2019,Governor,Governor,-0.43178940610912364
+Louisiana,LA,John Bel Edwards,Democratic,1/11/2016,Governor,Governor,-0.47035853489802776
+Massachusetts,MA,Charlie Baker,Republican,1/8/2015,Governor,Governor,-0.9221165411499987
+Maryland,MD,Larry Hogan,Republican,1/21/2015,Governor,Governor,0.6574031889816203
+Maine,ME,Janet Mills,Democratic,1/2/2019,Governor,Governor,-0.7552915105543851
+Michigan,MI,Gretchen Whitmer,Democratic,1/1/2019,Governor,Governor,-1.1813294126152976
+Minnesota,MN,Tim Walz,Democratic,1/7/2019,Governor,Governor,-0.838083537605875
+Missouri,MO,Mike Parson,Republican,6/1/2018,Governor,Governor,0.8385870358431012
+Mississippi,MS,Tate Reeves,Republican,1/14/2020,Governor,Governor,0.8226963021034789
+Montana,MT,Greg Gianforte,Republican,1/4/2021,Governor,Governor,0.8261543621012596
+North Carolina,NC,Roy Cooper,Democratic,1/1/2017,Governor,Governor,-0.16042273796346973
+North Dakota,ND,Doug Burgum,Republican,12/15/2016,Governor,Governor,0.7585309076574597
+Nebraska,NE,Pete Ricketts,Republican,1/8/2015,Governor,Governor,0.8316037488735833
+New Hampshire,NH,Chris Sununu,Republican,1/5/2017,Governor,Governor,-0.2906862940062541
+New Jersey,NJ,Phil Murphy,Democratic,1/16/2018,Governor,Governor,-0.7060183846569225
+New Mexico,NM,Michelle Lujan Grisham,Democratic,1/1/2019,Governor,Governor,-0.9400961587033831
+Nevada,NV,Steve Sisolak,Democratic,1/7/2019,Governor,Governor,-0.992765293952326
+New York,NY,Kathy Hochul,Democratic,8/24/2021,Governor,Governor,-1.1819391036623055
+Ohio,OH,Mike DeWine,Republican,1/14/2019,Governor,Governor,-0.9488706160276326
+Oklahoma,OK,Kevin Stitt,Republican,1/14/2019,Governor,Governor,0.8310754223229062
+Oregon,OR,Kate Brown,Democratic,2/18/2015,Governor,Governor,-0.5625231191822246
+Pennsylvania,PA,Tom Wolf,Democratic,1/20/2015,Governor,Governor,-1.1199211581719224
+Rhode Island,RI,Dan McKee,Democratic,3/2/2021,Governor,Governor,-1.4463392761495235
+South Carolina,SC,Henry McMaster,Republican,1/24/2017,Governor,Governor,0.83009499695942
+South Dakota,SD,Kristi Noem,Republican,1/5/2019,Governor,Governor,0.8672912285585742
+Tennessee,TN,Bill Lee,Republican,1/19/2019,Governor,Governor,1.0154522065459075
+Texas,TX,Greg Abbott,Republican,1/20/2015,Governor,Governor,3.0927902907111307
+Utah,UT,Spencer Cox,Republican,1/4/2021,Governor,Governor,-0.8765469019261906
+Virginia,VA,Glenn Youngkin,Republican,1/15/2022,Governor,Governor,0.3891156931592504
+Vermont,VT,Phil Scott,Republican,1/5/2017,Governor,Governor,-0.47554494532798736
+Washington,WA,Jay Inslee,Democratic,1/16/2013,Governor,Governor,-0.44135340158072545
+Wisconsin,WI,Tony Evers,Democratic,1/7/2019,Governor,Governor,-0.8009215075421231
+West Virginia,WV,Jim Justice,Republican,1/16/2017,Governor,Governor,-0.8248931619792294
+Wyoming,WY,Mark Gordon,Republican,1/7/2019,Governor,Governor,0.798496131086611
