@@ -51,8 +51,14 @@ jupyter:
 #### What topics do state-level politicians tweet about?
 <!-- #endregion -->
 
-<!-- #region slideshow={"slide_type": "subslide"} -->
-#### Method: BERTopic model, trained with TF-IDF embeddings
+<!-- #region slideshow={"slide_type": "fragment"} -->
+Task: Topic Modeling
+
+Method: BERTopic
+
+Script: `topic_model.py`
+
+DVC YAML Stage: `topic_model`
 <!-- #endregion -->
 
 ```python slideshow={"slide_type": "skip"}
@@ -147,7 +153,7 @@ topic_model.visualize_topics()
 ### Topics
 <!-- #endregion -->
 
-```python slideshow={"slide_type": "subslide"} hidePrompt=true hideCode=false
+```python slideshow={"slide_type": "fragment"} hidePrompt=true hideCode=false
 topic_model.get_topic_info()[1:10]
 ```
 
@@ -162,7 +168,7 @@ dynamic_topics = topic_model.topics_over_time(tweets['tweet'],
 Image(filename='plots/topics_over_time.png')
 ```
 
-```python slideshow={"slide_type": "subslide"} hideCode=false hidePrompt=true
+```python slideshow={"slide_type": "skip"} hideCode=false hidePrompt=true
 topic_model.visualize_topics_over_time(dynamic_topics,
                                        topics=[0,1,2,3,4,5,6,7,8,9],
                                        width = 950)
@@ -182,7 +188,7 @@ Observations:
 ### Question 2: Can Tweets be used to predict the state an official leads?
 <!-- #endregion -->
 
-<!-- #region slideshow={"slide_type": "subslide"} -->
+<!-- #region slideshow={"slide_type": "fragment"} -->
 Task: Multiclass Classification (State)
 
 Method: Linear Support Vector Classifier
@@ -313,7 +319,7 @@ Observations:
 ### Question 3: Can I predict the office a politician holds?
 <!-- #endregion -->
 
-<!-- #region slideshow={"slide_type": "slide"} -->
+<!-- #region slideshow={"slide_type": "fragment"} -->
 Task: Multiclass Classification (Political Office)
 
 Method: Linear Support Vector Classifier
@@ -354,12 +360,12 @@ pipe.fit(X,y)
 y_pred = pipe.predict(X)
 ```
 
-```python
+```python slideshow={"slide_type": "subslide"} hideCode=true hidePrompt=true
 ConfusionMatrixDisplay.from_predictions(y, y_pred, display_labels = pd.unique(tweets['office']))
 #plt.savefig('plots/office_cm.png')
 ```
 
-```python slideshow={"slide_type": "slide"}
+```python slideshow={"slide_type": "skip"}
 cm = confusion_matrix(y,y_pred)
 office_cm = pd.DataFrame.from_dict({'office': pd.unique(tweets['office']),
                                    'correct': np.diag(cm),
@@ -369,11 +375,11 @@ office_cm = pd.DataFrame.from_dict({'office': pd.unique(tweets['office']),
                                    'recall': np.diag(cm)/cm.sum(0)})
 ```
 
-```python slideshow={"slide_type": "slide"} hidePrompt=true hideCode=true
+```python slideshow={"slide_type": "fragment"} hidePrompt=true hideCode=true
 office_cm
 ```
 
-<!-- #region slideshow={"slide_type": "slide"} -->
+<!-- #region slideshow={"slide_type": "subslide"} -->
 Observations:
 
 * Fewer classes, but overall a less effective classifier
@@ -384,9 +390,11 @@ Observations:
 * Classes are imbalanced; count(governor) = 1.5x/2x count(other offices)
 <!-- #endregion -->
 
-### Question 4: Can I predict the political party of a state-level political official?
-
 <!-- #region slideshow={"slide_type": "slide"} -->
+### Question 4: Can I predict the political party of a state-level political official?
+<!-- #endregion -->
+
+<!-- #region slideshow={"slide_type": "fragment"} -->
 Task: Binary Classification (Political Party)
 
 Method: Linear Support Vector Classifier
@@ -400,12 +408,12 @@ DVC YAML Stage: `twoclass_party`
 Note: 2 officials are Independents, and were excluded from this model. In Minnesota, the Democratic party is called the Democratic Farmer-Labor party (DFL); politicians in that party were recoded as Democrats.
 <!-- #endregion -->
 
-```python
+```python slideshow={"slide_type": "skip"}
 #Load the trained multiclass pipeline
 pipe = joblib.load('outputs/bc_party_pipe.pkl')
 ```
 
-```python
+```python slideshow={"slide_type": "skip"}
 labels = pd.DataFrame(tweets['Party'].unique()).reset_index()
 #Add one because zero indexed
 labels['index'] = labels['index']+1
@@ -414,7 +422,7 @@ tweets = tweets.merge(labels, on = 'Party')
 partyclass = tweets.loc[tweets['Party'] != 'Independent']
 ```
 
-```python
+```python slideshow={"slide_type": "skip"}
 #Select labels as targets
 y = partyclass['party_label']
 
@@ -422,27 +430,20 @@ y = partyclass['party_label']
 X = partyclass["tweet"]
 ```
 
-```python
+```python slideshow={"slide_type": "skip"}
 pipe.fit(X,y)
 ```
 
-```python
+```python slideshow={"slide_type": "skip"}
 y_pred = pipe.predict(X)
 ```
 
-```python hidePrompt=true hideCode=true
-cm = pd.DataFrame(confusion_matrix(y,y_pred))
-cm.columns = pd.unique(partyclass['Party'])
-cm.index = pd.unique(partyclass['Party'])
-cm
-```
-
-```python
+```python slideshow={"slide_type": "subslide"} hidePrompt=true hideCode=true
 ConfusionMatrixDisplay.from_predictions(y, y_pred, display_labels = pd.unique(partyclass['Party']))
-plt.savefig('plots/party_cm.png')
+#plt.savefig('plots/party_cm.png')
 ```
 
-```python slideshow={"slide_type": "slide"} hidePrompt=true
+```python slideshow={"slide_type": "fragment"} hidePrompt=true
 print(classification_report(y, y_pred, target_names=pd.unique(partyclass['Party'])))
 ```
 
@@ -459,7 +460,7 @@ Observations:
 ### Question 5: Can I predict *how* partisan an elected official is, based on their tweets?
 <!-- #endregion -->
 
-<!-- #region slideshow={"slide_type": "slide"} -->
+<!-- #region slideshow={"slide_type": "fragment"} -->
 Task: Ideal Point Generation
 
 Method: Wordfish (via R packages `quanteda` and `quanteda.textmodels`)
@@ -475,7 +476,7 @@ Note: I was only able to find ideal points for governors and state treasurers. F
 #### Ideal points of governors
 <!-- #endregion -->
 
-```python slideshow={"slide_type": "subslide"} hidePrompt=true hideCode=true
+```python slideshow={"slide_type": "fragment"} hidePrompt=true hideCode=true
 Image(filename='plots/gov_ideal.png') 
 ```
 
@@ -483,7 +484,7 @@ Image(filename='plots/gov_ideal.png')
 #### Ideal points of state treasurers:
 <!-- #endregion -->
 
-```python slideshow={"slide_type": "subslide"} hideCode=true hidePrompt=true
+```python slideshow={"slide_type": "fragment"} hideCode=true hidePrompt=true
 Image(filename='plots/trs_ideal.png')
 ```
 
