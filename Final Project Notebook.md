@@ -272,9 +272,9 @@ cm = confusion_matrix(y,y_pred)
 state_cm = pd.DataFrame.from_dict({'state': pd.unique(tweets['StateAbbr']),
                                    'correct': np.diag(cm),
                                    'incorrect': cm.sum(1)-np.diag(cm),
-                                   'total_tweets': cm.sum(0),
-                                   'precision': np.diag(cm)/cm.sum(1),
-                                   'recall': np.diag(cm)/cm.sum(0)})
+                                   'total_tweets': cm.sum(1),
+                                   'precision': np.diag(cm)/cm.sum(0),
+                                   'recall': np.diag(cm)/cm.sum(1)})
 ```
 
 ```python slideshow={"slide_type": "skip"}
@@ -363,7 +363,7 @@ ConfusionMatrixDisplay.from_predictions(y, y_pred, display_labels = pd.unique(tw
 cm = confusion_matrix(y,y_pred)
 office_cm = pd.DataFrame.from_dict({'office': pd.unique(tweets['office']),
                                    'correct': np.diag(cm),
-                                   'incorrect': cm.sum(0)-np.diag(cm),
+                                   'incorrect': cm.sum(1)-np.diag(cm),
                                    'total_tweets': cm.sum(1),
                                    'precision': np.diag(cm)/cm.sum(1),
                                    'recall': np.diag(cm)/cm.sum(0)})
